@@ -76,6 +76,7 @@ button, input {
     cursor: pointer;
     background: linear-gradient(40deg, mediumpurple, yellow, lightgreen);
     margin-left: 4px;
+    margin-top: 4px;
     padding: 4px;
     border-radius: 4px;
 }
