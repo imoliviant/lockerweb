@@ -39,7 +39,7 @@ body {
     padding: 0 15px;
     min-height: 50px;
     cursor: pointer;
-    transition: all 0.2s linear;
+    transition: all 0.5s linear;
 }
 
 .accordion-content header .title {
@@ -59,7 +59,7 @@ body {
     padding: 0 15px;
     font-weight: 400;
     height: 0;
-    transition: all 0.2s linear;
+    transition: all 0.5s linear;
 }
 
 .accordion-content.open{
