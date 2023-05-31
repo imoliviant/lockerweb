@@ -1,7 +1,8 @@
 var tdhUsers = null;
 var contract = null;
-const tdhAddy = "0x35EA0c670eD9f54Ac07B648aCF0F2EB173A6012D";
-const dhAddy = "0x1836C33b9350D18304e0F701DE777Cc7501E9C2a";
+const tdhAddy = "0xC85eE4670886A54AC97907d0E00B6010c033e670";   // "0x35EA0c670eD9f54Ac07B648aCF0F2EB173A6012D";
+const dhAddy =  "0x087a587f7cDB85113d41c9956C130e7F0ECB5490";   // "0x1836C33b9350D18304e0F701DE777Cc7501E9C2a";
+const lockerAddy = "0x8c4e91369d450308e994d155FF5b5459AcB14Fe8";
 
 document.getElementById('connectWallet').onclick = async () => {
     if(window.ethereum){
@@ -19,8 +20,9 @@ document.getElementById('connectWallet').onclick = async () => {
 
         document.getElementById("approveTDH").onclick = async () => {
             var content = 'Approving.';
+            var amount = '10000000000000000000000000';
             document.getElementById("approveTDH").textContent = content;
-            var event = tdhToken.methods.approve().send({from: tdhUsers}).then(function(result){
+            var event = tdhToken.methods.approve(lockerAddy, amount).send({from: tdhUsers}).then(function(result){
                 var content = 'Approved!';
                 document.getElementById('approveTDH').textContent = content;
                 console.log(result);
@@ -36,6 +38,17 @@ document.getElementById('connectWallet').onclick = async () => {
         var dhBalance = dhNft.methods.balanceOf(tdhUsers).call({from: tdhUsers}).then(function(result){
             console.log(result);
             document.getElementById('nftHeld').textContent = result;
-        })
+        });
+        
+        var tdhLocked = tdhToken.methods.balanceOf(lockerAddy).call({from: tdhUsers}).then(function(result){
+            var content = JSON.stringify(result.toString() / 1000000000000000000);
+            var contents = Number(content).toFixed(0);
+            document.getElementById('totalLocked').textContent = contents;
+        });
+        
+        var shoppableNFTs = dhNft.methods.balanceOf(lockerAddy).call({from: tdhUsers}).then(function(result){
+            console.log(result);
+            document.getElementById('shopableNFT').textContent = result;
+        });
     }
 }
