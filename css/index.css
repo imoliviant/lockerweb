@@ -11,6 +11,9 @@ body {
     display: flex;
     align-items: center;
     background: linear-gradient(40deg, mediumpurple, yellow, lightgreen);
+    background-image: url("/background\ 4.png");
+    /*background-repeat: no-repeat;
+    background-size: cover; */
 }
 
 .accordion {
