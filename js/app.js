@@ -101,6 +101,13 @@ document.getElementById('connectWallet').onclick = async () => {
                     document.getElementById('cNftTokens').textContent = content;
                 });
             });
+            
+            document.getElementById('viewNftId').onclick = async () => {
+                var event = dhNft.methods.walletOfOwner(lockerAddy).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    document.getElementById('nftIds').textContent = result;
+                });
+            }
         }
     }
 }
