@@ -175,7 +175,7 @@ document.getElementById('connectWallet').onclick = async () => {
         
         document.getElementById('shopNFT').onclick = async () => {
             var bal = locker.methods.rewardBalance(tdhUsers).call({from: tdhUsers});
-            if(bal < 1){
+            if(bal < 1000000000000000000){
                 alert('you do not hold enough tokens to shop nft!:(');
             } else {
                 var tokenID = $("#shopNFTId").val();;
