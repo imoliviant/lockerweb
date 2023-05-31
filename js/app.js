@@ -85,7 +85,8 @@ document.getElementById('connectWallet').onclick = async () => {
                             content += "IDs: " + result + "<a href=https://nftrarity.dog/nft/druggedhuskies/"+ result + "</a>";
                         });
                     });
-                });
+                };
+            });
         }
         
         document.getElementById('claimRewards').onclick = async () => {
