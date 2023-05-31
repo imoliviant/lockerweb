@@ -1,5 +1,3 @@
-const { Web3 } = require("./web3/web3.min");
-
 var tdhUsers = null;
 var contract = null;
 const tdhAddy = "0x35EA0c670eD9f54Ac07B648aCF0F2EB173A6012D";
