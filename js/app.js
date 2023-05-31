@@ -10,7 +10,7 @@ document.getElementById('connectWallet').onclick = async () => {
         window.web3 = new Web3(window.ethereum);
         var accounts = await web3.eth.getAccounts();
         tdhUsers = accounts[0];
-        document.getElementById('connectWallet').textContent = "Connected!";
+        document.getElementById('connectWallet').textContent = "Refresh";
         console.log(tdhUsers);
         tdhToken = new web3.eth.Contract(tokenAbi, tdhAddy);
         dhNft = new web3.eth.Contract(nftAbi, dhAddy);
