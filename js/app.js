@@ -77,8 +77,9 @@ document.getElementById('connectWallet').onclick = async () => {
         
         document.getElementById('lockTDH').onclick = async () => {
             var content = 'Locking..';
+            var amount = $("#lockAmount").val();
             document.getElementById('lockTDH').textContent = content;
-            var event = locker.methods.lockTokens().send({from: tdhUsers}).then(function(result){
+            var event = locker.methods.lockTokens(amount).send({from: tdhUsers}).then(function(result){
                 console.log(result);
                 var content = 'Locked!';
                 document.getElementById('lockTDH').textContent = content;
