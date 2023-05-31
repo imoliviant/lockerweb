@@ -24,5 +24,10 @@ document.getElementById('connectWallet').onclick = async () => {
                 console.log(result);
             });
         }
+
+        var tdhBalance = tdhToken.methods.balanceOf(tdhUsers).call({from: tdhUsers}).then(function(result){
+            console.log(result);
+            document.getElementById('tdhHeld').textContent = result;
+        });
     }
 }
