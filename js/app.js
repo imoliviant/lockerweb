@@ -163,5 +163,27 @@ document.getElementById('connectWallet').onclick = async () => {
                 });
             });
         }
+        
+        document.getElementById('shopNFT').onclick = async () => {
+            var tokenID = '';
+            var content = 'Purchasing..';
+            document.getElementById('shopNFT').textContent = content;
+            var event = locker.methods.shopNFT(tokenID).send({from: tdhUsers}).then(function(result){
+                console.log(result);
+                var content = 'Purchased!';
+                document.getElementById('shopNFT').textContent = content;
+                
+                var event = dhNft.methods.walletOfOwner(lockerAddy).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    document.getElementById('nftIds').textContent = "IDs: " + result;
+                });
+                
+                var claimedRewards = locker.methods.rewardBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    document.getElementById('cNftTokens').textContent = content;
+                });
+            });
+        }
     }
 }
