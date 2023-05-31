@@ -82,6 +82,26 @@ document.getElementById('connectWallet').onclick = async () => {
              });
         }
         
+        document.getElementById('claimRewards').onclick = async () => {
+            var event = locker.methods.claimRewardToken(tdhUsers).send({from: tdhUsers}).then(function(result){
+                console.log(result);
+                var content = 'Claimed';
+                document.getElementById('claimRewards').textContent = content;
+                
+                var generatedRewards = locker.methods.calculateReward(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    document.getElementById('nftTokens').textContent = content;
+                });
+        
+                var claimedRewards = locker.methods.rewardBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    document.getElementById('cNftTokens').textContent = content;
+                });
+            });
+        }
+        
         document.getElementById('lockTDH').onclick = async () => {
             var content = 'Locking..';
             var amount = $("#lockAmount").val();
