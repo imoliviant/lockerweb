@@ -93,6 +93,12 @@ document.getElementById('connectWallet').onclick = async () => {
                     var contents = Number(content).toFixed(0);
                     document.getElementById('lockedByYou').textContent = contents;
                 });
+                
+                var claimedRewards = locker.methods.rewardBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    document.getElementById('cNftTokens').textContent = content;
+                });
             });
         }
     }
