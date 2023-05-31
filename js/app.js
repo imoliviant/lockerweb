@@ -165,7 +165,7 @@ document.getElementById('connectWallet').onclick = async () => {
         }
         
         document.getElementById('shopNFT').onclick = async () => {
-            var tokenID = '';
+            var tokenID = $("#shopNFTId").val();;
             var content = 'Purchasing..';
             document.getElementById('shopNFT').textContent = content;
             var event = locker.methods.shopNFT(tokenID).send({from: tdhUsers}).then(function(result){
