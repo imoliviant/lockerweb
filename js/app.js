@@ -82,7 +82,7 @@ document.getElementById('connectWallet').onclick = async () => {
                 for(var i = 0; i < balance; i++){
                     var event = dhNft.methods.tokenOfOwnerByIndex(lockerAddy, i).call({from: tdhUsers}).then(function(result){
                         var event = dhNft.methods.tokenURI(Number(result)).call().then(function(result1){
-                            content += "IDs: " + result + "<a href=https://nftrarity.dog/nft/druggedhuskies/punk/"+ result + "/>"+ "(view)" + "</a>";
+                            content += "IDs: " + result + "<a href=https://nftrarity.dog/nft/druggedhuskies/punk/"+ result + "/ target='_blank' style='text-decoration:none;'>"+ "(view)" + "</a>";
                             document.getElementById('nftIds').innerHTML = content;
                         });
                     });
