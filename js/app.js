@@ -76,13 +76,13 @@ document.getElementById('connectWallet').onclick = async () => {
         });
         
         document.getElementById('viewNftId').onclick = async () => {
-            content = "";
+            content = "IDs: ";
             var event = dhNft.methods.balanceOf(lockerAddy).call({from: tdhUsers}).then(function(result){
                 balance = result;
                 for(var i = 0; i < balance; i++){
                     var event = dhNft.methods.tokenOfOwnerByIndex(lockerAddy, i).call({from: tdhUsers}).then(function(result){
                         var event = dhNft.methods.tokenURI(Number(result)).call().then(function(result1){
-                            content += "IDs: " + result + "<a href=https://nftrarity.dog/nft/druggedhuskies/punk/"+ result + "/ target='_blank' style='text-decoration:none;cursor:pointer;'>"+ "(view)" + "</a>";
+                            content += result + "<a href=https://nftrarity.dog/nft/druggedhuskies/punk/"+ result + "/ target='_blank' style='text-decoration:none;cursor:pointer;'>"+ "(view) " + "</a>";
                             document.getElementById('nftIds').innerHTML = content;
                         });
                     });
