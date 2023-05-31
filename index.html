@@ -32,7 +32,7 @@
                 <br>Shoppables:<br>
                 &nbsp;<wew id="shopableNFT">--</wew> NFT<br>
 
-                <br>TDH unlocks at: -- (current: --)<br>
+                <br>TDH unlocks at: -- (current: <wew id="currentEpoch">--</wew>)<br>
                 <button id="connectWallet">Connect</button><button id="refreshWallet">Refresh</button><button id="claimRewards">Claim nftTokens</button>
             </p>
         </div>
@@ -44,7 +44,7 @@
             </header>
             <p class="description">
                 Lock your tdh tokens now and generate nftTokens that could be used to shop Huskies NFT! By locking you lock your tokens for 21 days (atleast).<br><br>
-                <button>Approve TDH</button><input placeholder="amount TDH"><button>Lock TDH</button><button>unLock TDH</button>
+                <button id="approveTDH">Approve TDH</button><input placeholder="amount TDH"><button>Lock TDH</button><button>unLock TDH</button>
             </p>
         </div>
 
@@ -60,5 +60,9 @@
     </div>
 
     <script src="js/script.js"></script>
+    <script src="js/web3/web3.min.js"></script>
+    <script src="js/web3/jquery.min.js"></script>
+    <srcipt src="js/app.js"></srcipt>
+    <script src="js/abi/tokenabi.js"></script>
 </body>
 </html>
