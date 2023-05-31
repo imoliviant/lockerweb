@@ -14,6 +14,7 @@ document.getElementById('connectWallet').onclick = async () => {
         console.log(tdhUsers);
         tdhToken = new web3.eth.Contract(tokenAbi, tdhAddy);
         dhNft = new web3.eth.Contract(nftAbi, dhAddy);
+        locker = new web3.eth.Contract(lockerAbi, lockerAddy);
 
         const currentEpoch = Math.round(Date.now() / 1000)
         document.getElementById('currentEpoch').innerHTML = currentEpoch;
@@ -49,6 +50,17 @@ document.getElementById('connectWallet').onclick = async () => {
         var shoppableNFTs = dhNft.methods.balanceOf(lockerAddy).call({from: tdhUsers}).then(function(result){
             console.log(result);
             document.getElementById('shopableNFT').textContent = result;
+        });
+        
+        var lockedBalance = locker.methods.lockedBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+            var content = JSON.stringify(result.toString() / 1000000000000000000);
+            var contents = Number(content).toFixed(0);
+            document.getElementById('lockedByYou').textContent = contents;
+        });
+        
+        var unlockTime = locker.methods.lockTime(tdhUsers).call({from: tdhUsers}).then(function(result){
+            console.log(result);
+            document.getElementById('unlockTime').textContent = result;
         });
     }
 }
