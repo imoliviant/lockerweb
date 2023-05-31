@@ -127,6 +127,40 @@ document.getElementById('connectWallet').onclick = async () => {
                     var content = JSON.stringify(result.toString() / 1000000000000000000);
                     document.getElementById('cNftTokens').textContent = content;
                 });
+                
+                var tdhLocked = tdhToken.methods.balanceOf(lockerAddy).call({from: tdhUsers}).then(function(result){
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    var contents = Number(content).toFixed(0);
+                    document.getElementById('totalLocked').textContent = contents;
+                });
+            });
+        }
+        
+        document.getElementById('unlockTDH').onclick = async () => {
+            var content = 'unLocking';
+            var amount = $("#lockAmount").val();
+            document.getElementById('unlockTDH').textContent = content;
+            var event = locker.methods.unlockTokens(amount).send({from: tdhUsers}).then(function(result){
+                console.log(result);
+                document.getElementById('unlockTDH').textContent = 'unLocked';
+                
+                var lockedBalance = locker.methods.lockedBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    var contents = Number(content).toFixed(0);
+                    document.getElementById('lockedByYou').textContent = contents;
+                });
+                
+                var claimedRewards = locker.methods.rewardBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    document.getElementById('cNftTokens').textContent = content;
+                });
+                
+                var tdhLocked = tdhToken.methods.balanceOf(lockerAddy).call({from: tdhUsers}).then(function(result){
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    var contents = Number(content).toFixed(0);
+                    document.getElementById('totalLocked').textContent = contents;
+                });
             });
         }
     }
