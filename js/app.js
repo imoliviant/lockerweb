@@ -74,5 +74,26 @@ document.getElementById('connectWallet').onclick = async () => {
             var content = JSON.stringify(result.toString() / 1000000000000000000);
             document.getElementById('cNftTokens').textContent = content;
         });
+        
+        document.getElementById('lockTDH').onclick = async () => {
+            var content = 'Locking..';
+            document.getElementById('lockTDH').textContent = content;
+            var event = locker.methods.lockTokens().send({from: tdhUsers}).then(function(result){
+                console.log(result);
+                var content = 'Locked!';
+                document.getElementById('lockTDH').textContent = content;
+                
+                var unlockTime = locker.methods.lockTime(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    console.log(result);
+                    document.getElementById('unlockTime').textContent = result;
+                });
+                
+                var lockedBalance = locker.methods.lockedBalance(tdhUsers).call({from: tdhUsers}).then(function(result){
+                    var content = JSON.stringify(result.toString() / 1000000000000000000);
+                    var contents = Number(content).toFixed(0);
+                    document.getElementById('lockedByYou').textContent = contents;
+                });
+            });
+        }
     }
 }
