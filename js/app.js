@@ -2,7 +2,7 @@ var tdhUsers = null;
 var contract = null;
 const tdhAddy = "0xC85eE4670886A54AC97907d0E00B6010c033e670";   // "0x35EA0c670eD9f54Ac07B648aCF0F2EB173A6012D";
 const dhAddy =  "0x087a587f7cDB85113d41c9956C130e7F0ECB5490";   // "0x1836C33b9350D18304e0F701DE777Cc7501E9C2a";
-const lockerAddy = "0xd749a604E640D44b6487161E025C93889119D838";
+const lockerAddy = "0x2d73DD17ba5ddbFBb2aeD9302304a7225eAf7829";
 
 document.getElementById('connectWallet').onclick = async () => {
     if(window.ethereum){
