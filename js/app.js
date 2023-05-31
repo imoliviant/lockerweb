@@ -78,7 +78,7 @@ document.getElementById('connectWallet').onclick = async () => {
         document.getElementById('viewNftId').onclick = async () => {
              var event = dhNft.methods.walletOfOwner(lockerAddy).call({from: tdhUsers}).then(function(result){
                 console.log(result);
-                document.getElementById('nftIds').textContent = "<br>" + result;
+                document.getElementById('nftIds').textContent = "IDs: " + result;
              });
         }
         
