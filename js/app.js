@@ -73,6 +73,7 @@ document.getElementById('connectWallet').onclick = async () => {
             console.log(result);
             var content = JSON.stringify(result.toString() / 1000000000000000000);
             document.getElementById('cNftTokens').textContent = content;
+            document.getElementById('cNftToken').textContent = content;
         });
         
         document.getElementById('viewNftId').onclick = async () => {
