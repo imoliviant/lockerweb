@@ -3,7 +3,7 @@ var contract = null;
 const tdhAddy = "0xC85eE4670886A54AC97907d0E00B6010c033e670";   // "0x35EA0c670eD9f54Ac07B648aCF0F2EB173A6012D";
 const oldDhAddy = "0x1836C33b9350D18304e0F701DE777Cc7501E9C2a";
 const dhAddy = "0xc6A7D5f48894A638A629cB7CD7277e30f52FC991";
-const lockerAddy = "0x483Ab7e7d2eA81D1378FB37BB4ac6811864E3dB9";
+const lockerAddy = "0x05AfEDCCf08E44B1777A9f66B591532519439795";
 const migratorAddy = "0xe31Cfc612F6b0bC3a40CFc880Ce8e23F51733167";
 
 document.getElementById('connectWallet').onclick = async () => {
