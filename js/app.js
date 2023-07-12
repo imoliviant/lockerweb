@@ -1,8 +1,10 @@
 var tdhUsers = null;
 var contract = null;
 const tdhAddy = "0xC85eE4670886A54AC97907d0E00B6010c033e670";   // "0x35EA0c670eD9f54Ac07B648aCF0F2EB173A6012D";
-const dhAddy = "0x087a587f7cDB85113d41c9956C130e7F0ECB5490";   // "0x1836C33b9350D18304e0F701DE777Cc7501E9C2a";
+const oldDhAddy = "0x1836C33b9350D18304e0F701DE777Cc7501E9C2a";
+const dhAddy = "0xc6A7D5f48894A638A629cB7CD7277e30f52FC991";
 const lockerAddy = "0x483Ab7e7d2eA81D1378FB37BB4ac6811864E3dB9";
+const migratorAddy = "0xe31Cfc612F6b0bC3a40CFc880Ce8e23F51733167";
 
 document.getElementById('connectWallet').onclick = async () => {
     if (window.ethereum) {
@@ -14,7 +16,9 @@ document.getElementById('connectWallet').onclick = async () => {
         console.log(tdhUsers);
         tdhToken = new web3.eth.Contract(tokenAbi, tdhAddy);
         dhNft = new web3.eth.Contract(nftAbi, dhAddy);
+        oldDhNft = new web3.eth.Contract(nftAbi, oldDhAddy);
         locker = new web3.eth.Contract(lockerAbi, lockerAddy);
+        migrator = new web3.eth.Contract(migratorAbi, migratorAddy);
 
         const currentEpoch = Math.round(Date.now() / 1000)
         document.getElementById('currentEpoch').innerHTML = currentEpoch;
@@ -26,6 +30,16 @@ document.getElementById('connectWallet').onclick = async () => {
             var event = tdhToken.methods.approve(lockerAddy, amount).send({ from: tdhUsers }).then(function (result) {
                 var content = 'Approved!';
                 document.getElementById('approveTDH').textContent = content;
+                console.log(result);
+            });
+        }
+
+        document.getElementById("approveForSwap").onclick = async () => {
+            var content = "Approving.";
+            document.getElementById('approveForSwap').textContent = content;
+            var event = oldDhNft.methods.setApprovalForAll(migratorAddy, true).send({ from: tdhUsers }).then(function (result) {
+                var content = "Approved!";
+                document.getElementById("approveForSwap").textContent = content;
                 console.log(result);
             });
         }
@@ -170,6 +184,17 @@ document.getElementById('connectWallet').onclick = async () => {
                     var contents = Number(content).toFixed(0);
                     document.getElementById('totalLocked').textContent = contents;
                 });
+            });
+        }
+
+        document.getElementById('swapNftId').onclick = async () => {
+            var tokenId = $("#snftId").val();;
+            var content = 'swapping..';
+            document.getElementById('swapNftId').textContent = content;
+            var event = migrator.methods.swapNft(tdhUsers, tokenId).send({ from: tdhUsers }).then(function (result) {
+                console.log(result);
+                var content = 'Swapped!';
+                document.getElementById('swapNftId').textContent = content;
             });
         }
 
