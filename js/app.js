@@ -203,7 +203,7 @@ document.getElementById('connectWallet').onclick = async () => {
                 console.log(result);
                 var noOfNft = $("#mintAmount").val();;
                 var cost = (result * noOfNft);
-                var mintPrice = web3.utils.toBN(cost);
+                var mintPrice = new BigNumber(cost);
 
                 var mintIt = dhNft.methods.mintNft(noOfNft).send({ from: tdhUsers, value: mintPrice }).then(function(result2){
                     console.log(result2);
