@@ -217,5 +217,6 @@ document.getElementById('connectWallet').onclick = async () => {
                     document.getElementById('cNftTokens').textContent = content;
                 });
             });
+        }
     }
 }
