@@ -206,7 +206,9 @@ document.getElementById('connectWallet').onclick = async () => {
 
                 var noOfNft = $("#mintAmount").val();;
                 var cost = (mintPrice * noOfNft);
-                var event = alert(cost + " DOGE");
+                var ev = "Cost..";
+                var eve = document.getElementById('mintNFT').textContent = ev;
+                alert(cost + " DOGE");
             });
         }
 
