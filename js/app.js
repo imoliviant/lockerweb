@@ -88,6 +88,20 @@ document.getElementById('connectWallet').onclick = async () => {
             var eve = document.getElementById('amnt').innerHTML =  "( " +  cost + " DOGE )";
         });
 
+        document.getElementById('mintNFT').onclick = async () => {
+            var event = dhNft.methods.mintPrice().call({ from: tdhUsers }).then(function(result) {
+                console.log(result);
+                var mintPrice = JSON.stringify(result.toString());
+                var noOfNft = $("#mintAmount").val();;
+                var cost = (mintPrice * noOfNft);
+
+                var mintIt = dhNft.methods.mintNft(noOfNft).send({ from: tdhUsers, value: cost }).then(function(result2){
+                    console.log(result2);
+                    document.getElementById('mintNFT').textContent = "Minted!";
+                });;
+            });;
+        }
+
         var generatedRewards = locker.methods.calculateReward(tdhUsers).call({ from: tdhUsers }).then(function (result) {
             console.log(result);
             var content = JSON.stringify(result.toString() / 1000000000000000000);
