@@ -139,6 +139,16 @@ document.getElementById('connectWallet').onclick = async () => {
                     document.getElementById('unlockTime').textContent = result;
                 });
 
+                var event = dhNft.methods.mintPrice().call({ from: tdhUsers }).then(function(result) {
+                    console.log(result)
+
+                    var mintPrice = JSON.stringify(result.toString() / 1000000000000000000);
+
+                    var noOfNft = $("#mintAmount").val();;
+                    var cost = (mintPrice * noOfNft);
+                    var eve = document.getElementById('amnt').innerHTML =  "( " +  cost + " DOGE )";
+                });
+
                 var lockedBalance = locker.methods.lockedBalance(tdhUsers).call({ from: tdhUsers }).then(function (result) {
                     var content = JSON.stringify(result.toString() / 1000000000000000000);
                     var contents = Number(content).toFixed(0);
@@ -196,21 +206,6 @@ document.getElementById('connectWallet').onclick = async () => {
                 var content = 'Swapped!';
                 document.getElementById('swapNftId').textContent = content;
             });
-        }
-
-        document.getElementById('mintNFT').onclick = async () => {
-            var event = dhNft.methods.mintPrice().call({ from: tdhUsers }).then(function(result) {
-                console.log(result)
-
-                var mintPrice = JSON.stringify(result.toString() / 1000000000000000000);
-
-                var noOfNft = $("#mintAmount").val();;
-                var cost = (mintPrice * noOfNft);
-                var ev = "Cost..";
-                var eve = document.getElementById('mintNFT').innerHTML = ev + " " + cost + " DOGE";
-                alert(cost + " DOGE");
-            });
-        }
 
         document.getElementById('shopNFT').onclick = async () => {
             var tokenID = $("#shopNFTId").val();;
