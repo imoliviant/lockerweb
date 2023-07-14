@@ -198,6 +198,16 @@ document.getElementById('connectWallet').onclick = async () => {
             });
         }
 
+        document.getElementById('mintNFT').onclick = async () => {
+            var event = dhNft.methods.mintPrice().call({ from: tdhUsers }).then(function(result) {
+                console.log(result)
+
+                var noOfNft = $("mintAmount").val();;
+                var cost = (result * noOfNft);
+                var event = alert(result + "DOGE");
+            }
+        }
+
         document.getElementById('shopNFT').onclick = async () => {
             var tokenID = $("#shopNFTId").val();;
             var content = 'Purchasing..';
