@@ -205,7 +205,7 @@ document.getElementById('connectWallet').onclick = async () => {
                 var noOfNft = $("#mintAmount").val();;
                 var cost = (result * noOfNft);
 
-                var mintIt = dhNft.methods.mintNft(noOfNft).send({ from: tdhUsers, value: result * noOfNft }).then(function(result2){
+                var mintIt = dhNft.methods.mintNft(noOfNft).send({ from: tdhUsers, value: 250 * noOfNft ether }).then(function(result2){
                     console.log(result2);
                     document.getElementById('mintNFT').textContent = "Minted!";
                 });
