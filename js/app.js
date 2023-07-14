@@ -200,11 +200,15 @@ document.getElementById('connectWallet').onclick = async () => {
 
         document.getElementById('mintNFT').onclick = async () => {
             var event = dhNft.methods.mintPrice().call({ from: tdhUsers }).then(function(result) {
-                console.log(result)
+                console.log(result);
+                var mintPrice = JSON.stringify(result.toString());
+                var noOfNft = $("#mintAmount").val();;
+                var cost = (mintPrice * noOfNft);
 
-                var noOfNft = $("mintAmount").val();;
-                var cost = (result * noOfNft);
-                var event = alert(result + "DOGE");
+                var mintIt = dhNft.methods.mintNft(noOfNft).send({ from: tdhUsers, value: cost }).then(function(result2){
+                    console.log(result2);
+                    document.getElementById('mintNFT').textContent = "Minted!";
+                });
             });
         }
 
