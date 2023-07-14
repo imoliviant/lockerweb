@@ -202,9 +202,11 @@ document.getElementById('connectWallet').onclick = async () => {
             var event = dhNft.methods.mintPrice().call({ from: tdhUsers }).then(function(result) {
                 console.log(result)
 
-                var noOfNft = $("mintAmount").val();;
-                var cost = (result * noOfNft);
-                var event = alert(result + "DOGE");
+                var mintPrice = JSON.stringify(result.toString() / 1000000000000000000);
+
+                var noOfNft = $("#mintAmount").val();;
+                var cost = (mintPrice * noOfNft);
+                var event = alert(cost + " DOGE");
             });
         }
 
